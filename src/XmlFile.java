@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import javax.xml.parsers.*;
 import javax.xml.transform.OutputKeys;
@@ -9,13 +10,12 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.TransformerFactoryConfigurationError;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
 
 public class XmlFile {
-	
+	private TodoListManager newTask = new TodoListManager();
 	public void writeFile(ArrayList<Task> mainTaskList,String fileName) {
 		// all elements should be string to write to xml
 		String id;
@@ -37,23 +37,15 @@ public class XmlFile {
 			dom.appendChild(mainRootElement);
 			
 			for (int i = 0 ; i < mainTaskList.size(); i++) {
-				id = Integer.toString(i);
+				id = Integer.toString(i+1);
 				tittle = mainTaskList.get(i).getTittle();
 				project = mainTaskList.get(i).getProject();
-				date = mainTaskList.get(i).getDate();
+				date = newTask.dateToString(mainTaskList.get(i).getDate());
 				status = mainTaskList.get(i).getStatus();
-/*				if (boolStatus == true) {
-					status = "Done";
-				} else {
-					status = "Not Done";
-				}*/
+
 			 mainRootElement.appendChild(addElement(dom,id,tittle,project,status,date));
 			}
 			
-			/*Element root = dom.createElement("task");
-			rootElement = dom.createElement("tittle");
-			rootElement.appendChild(dom.createTextNode(mainTaskList.get(0).getTittle()));
-			root.appendChild(rootElement);*/
 			
 			// send DOM to a file
 			Transformer transform = TransformerFactory.newInstance().newTransformer();
@@ -64,20 +56,14 @@ public class XmlFile {
 			transform.transform(source, file);
 			
 			
-		} catch (ParserConfigurationException e) {
-			
-			e.printStackTrace();
-		} catch (TransformerConfigurationException e) {
-			
-			e.printStackTrace();
-		} catch (TransformerFactoryConfigurationError e) {
-			e.printStackTrace();
-		} catch (TransformerException e) { 
+         } 
+		 catch (Exception e) { 
 			e.printStackTrace();
 		}
 		 
 	}
 	
+	// Build a complete xml task element 
 	private static Node addElement(Document doc,String id,String tittle,
 			String project,String status,String date ) {
 		Element taskNode = doc.createElement("Task");
@@ -103,10 +89,10 @@ public class XmlFile {
 	}
 	
 	// read xml file
-	public ArrayList<Task> readFile(String filename) {
+	public ArrayList<Task> readFile(String filename) throws DOMException, ParseException {
 		
 		ArrayList<Task> rdArrayList = new ArrayList<>();
-		Task lsTask = new Task();
+		
 		DocumentBuilderFactory rdFactory = DocumentBuilderFactory.newInstance();
 		try {
 			DocumentBuilder rdBuilder = rdFactory.newDocumentBuilder();
@@ -116,16 +102,17 @@ public class XmlFile {
 			for (int temp = 0 ; temp < rdNodeList.getLength(); temp++) {
 				// get the items in task list
 				Node rdNode = rdNodeList.item(temp);
+				Task lsTask = new Task();
 				
 				if(rdNode.getNodeType() == Node.ELEMENT_NODE) {
 					Element rdElement = (Element)rdNode;
-					rdElement.getAttribute("id");
-					lsTask.setTittle(rdElement.getElementsByTagName("Tittle").item(0).getTextContent());
+					lsTask.setTittle(rdElement.getElementsByTagName("Tittle").item(0).getTextContent());				
 					lsTask.setProject(rdElement.getElementsByTagName("Project").item(0).getTextContent());
 					lsTask.setStatus(rdElement.getElementsByTagName("Status").item(0).getTextContent());
-					lsTask.setDate(rdElement.getElementsByTagName("Date").item(0).getTextContent());
-                }
-				
+					lsTask.setDate(newTask.stringToDate(rdElement.getElementsByTagName("Date").item(0).getTextContent()));
+					
+					
+				}
 				rdArrayList.add(lsTask);
 			}
 		} catch (ParserConfigurationException e) {
@@ -136,8 +123,10 @@ public class XmlFile {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	
 		
 	 return rdArrayList;	
+		
 	}
 
 }
