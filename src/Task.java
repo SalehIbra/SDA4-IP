@@ -1,19 +1,14 @@
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.Scanner;
-import java.util.Date;
-import java.text.SimpleDateFormat;
-import java.text.ParseException;
 
 public class Task {
-
+    private int taskId;
 	private String taskTittle;
 	private String taskProject;
 	private String taskStatus = "Not Done";
 	private Date taskDate ;
 	
-	public Task(String tittle , String project, String status,Date date) {
-
+	public Task(int id, String tittle , String project, String status,Date date) {
+        taskId = id;
 		taskTittle = tittle;
 		taskProject = project;
 		taskStatus = status;
@@ -24,7 +19,10 @@ public class Task {
 	public Task() {
 
 	}
-
+	
+	public void setId(int id) {
+		taskId = id;
+		}
 	public void setTittle(String tittle) {
 		taskTittle = tittle;
 		}
@@ -38,7 +36,9 @@ public class Task {
 		taskDate = date;
 	}
 	
-
+	public int getId() {
+		return taskId;
+	}
 	public String getTittle() {
 		return taskTittle;
 	}

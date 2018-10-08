@@ -1,5 +1,7 @@
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Scanner;
 
 import org.w3c.dom.DOMException;
@@ -13,7 +15,8 @@ public class TodoMain {
 		TodoListManager taskManager = new TodoListManager();
 		ArrayList<Task> taskList = new ArrayList<>();
 		taskList = xmlfile.readFile(filename);
-		
+		// test
+		//System.out.println(taskManager.getMaxTaskLength(taskList));		
 		
 	while (selectedChoice != 5) {
 		//  this code added for test
@@ -24,17 +27,17 @@ public class TodoMain {
 		
 		switch(selectedChoice) {
 		case 1:
-			taskManager.showTask(taskList);
+			taskManager.displyListOfTask(taskList);
 			break;
 		case 2:
-			taskList.add(taskManager.addNewTask());
+			taskList.add(taskManager.addNewTask(getMaxTaskId(taskList)+1));
 			
 			break;
 		case 3:
-			taskManager.editTask();
+			taskManager.editTask(taskList);
 			break;
 		case 4:
-			taskManager.removeTask();
+			taskManager.removeTask(taskList);
 			break;
 		case 5:
 			xmlfile.writeFile(taskList, filename);
@@ -46,7 +49,7 @@ public class TodoMain {
 	  }	
 
 	}
-	private static int showMenu(ArrayList<Task> listOfTask) {
+	public static int showMenu(ArrayList<Task> listOfTask) {
 		int choice;
 		Scanner userInput = new Scanner(System.in);
 		System.out.println(">> ToDoly Application");
@@ -75,7 +78,9 @@ public class TodoMain {
 		}
 		return done;
 	}
-	
-
+	public static int getMaxTaskId(ArrayList<Task> listOfTask) {
+		Task maxTask = Collections.max(listOfTask,Comparator.comparing(t -> t.getId()));
+		return maxTask.getId();
+	}
 
 }

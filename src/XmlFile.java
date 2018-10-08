@@ -37,7 +37,7 @@ public class XmlFile {
 			dom.appendChild(mainRootElement);
 			
 			for (int i = 0 ; i < mainTaskList.size(); i++) {
-				id = Integer.toString(i+1);
+				id = Integer.toString(mainTaskList.get(i).getId());
 				tittle = mainTaskList.get(i).getTittle();
 				project = mainTaskList.get(i).getProject();
 				date = newTask.dateToString(mainTaskList.get(i).getDate());
@@ -106,6 +106,7 @@ public class XmlFile {
 				
 				if(rdNode.getNodeType() == Node.ELEMENT_NODE) {
 					Element rdElement = (Element)rdNode;
+					lsTask.setId(Integer.parseInt(rdElement.getAttribute("id")));
 					lsTask.setTittle(rdElement.getElementsByTagName("Tittle").item(0).getTextContent());				
 					lsTask.setProject(rdElement.getElementsByTagName("Project").item(0).getTextContent());
 					lsTask.setStatus(rdElement.getElementsByTagName("Status").item(0).getTextContent());
