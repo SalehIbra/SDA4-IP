@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"todoTask","l":"Task"},{"p":"main","l":"TodoInterface"},{"p":"todoTask","l":"TodoListManager"},{"p":"main","l":"TodoMain"},{"p":"fileReadWrite","l":"XmlFile"}]

@@ -1,27 +1,63 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Tasks xmlns="https://crunchify.com/CrunchifyCreateXMLDOM">
-    <Task id="21">
-        <Tittle>44444445</Tittle>
-        <Project>444444</Project>
+    <Task id="1">
+        <Tittle>KTH a seminar and mingle event</Tittle>
+        <Project>Novare SDA</Project>
         <Status>Not Done</Status>
-        <Date>02-01-2018</Date>
+        <Date>08-11-2018</Date>
+    </Task>
+    <Task id="2">
+        <Tittle>Last day to send my homework</Tittle>
+        <Project>SAS Grund</Project>
+        <Status>Done</Status>
+        <Date>05-10-2018</Date>
+    </Task>
+    <Task id="3">
+        <Tittle>Change my attendance to 50%</Tittle>
+        <Project>SAS Grund</Project>
+        <Status>Not Done</Status>
+        <Date>01-12-2018</Date>
+    </Task>
+    <Task id="5">
+        <Tittle>Meeting in kinder garden</Tittle>
+        <Project>appointment</Project>
+        <Status>Not Done</Status>
+        <Date>22-11-2018</Date>
+    </Task>
+    <Task id="7">
+        <Tittle>Meeting with SDA former students</Tittle>
+        <Project>Novare SDA</Project>
+        <Status>Done</Status>
+        <Date>11-10-2018</Date>
+    </Task>
+    <Task id="9">
+        <Tittle>Return the books befor the last date</Tittle>
+        <Project>Uppsala library</Project>
+        <Status>Not Done</Status>
+        <Date>30-10-2018</Date>
     </Task>
     <Task id="10">
-        <Tittle>33333</Tittle>
-        <Project>333333</Project>
+        <Tittle>Eastern folk festival in uppsala theater</Tittle>
+        <Project>Entertainment</Project>
         <Status>Not Done</Status>
-        <Date>10-01-2018</Date>
+        <Date>19-10-2018</Date>
+    </Task>
+    <Task id="12">
+        <Tittle>Jazz festival in uppsala theater</Tittle>
+        <Project>Entertainment</Project>
+        <Status>Not Done</Status>
+        <Date>01-11-2018</Date>
     </Task>
     <Task id="13">
-        <Tittle>222222</Tittle>
-        <Project>22222</Project>
+        <Tittle>Doctor appointment - monthly check up</Tittle>
+        <Project>Family</Project>
         <Status>Not Done</Status>
-        <Date>05-04-2018</Date>
+        <Date>12-11-2018</Date>
     </Task>
-    <Task id="41">
-        <Tittle>11111</Tittle>
-        <Project>11111</Project>
+    <Task id="16">
+        <Tittle>Pick my quests from arlanada airport</Tittle>
+        <Project>Family</Project>
         <Status>Not Done</Status>
-        <Date>18-12-2018</Date>
+        <Date>18-10-2018</Date>
     </Task>
 </Tasks>
